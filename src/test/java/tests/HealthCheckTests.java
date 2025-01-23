@@ -22,7 +22,6 @@ public class HealthCheckTests {
     public void testPing() {
         // Выполняем GET запрос на /ping через APIClient
         Response response = apiClient.ping();
-        apiClient.deleteBooking(1527);
         assertThat(response.getStatusCode()).isEqualTo(201);
     }
 }
