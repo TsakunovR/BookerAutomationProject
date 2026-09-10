@@ -24,6 +24,14 @@ public class APIClient {
 
     // Определение базового URL на основе файла конфигурации
     private String determineBaseUrl() {
+        String configuredBaseUrl = System.getProperty("baseUrl");
+        if (configuredBaseUrl == null || configuredBaseUrl.isBlank()) {
+            configuredBaseUrl = System.getenv("BOOKER_BASE_URL");
+        }
+        if (configuredBaseUrl != null && !configuredBaseUrl.isBlank()) {
+            return configuredBaseUrl;
+        }
+
         String environment = System.getProperty("env", "test");
         String configFileName = "application-" + environment + ".properties";
 
